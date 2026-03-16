@@ -1,0 +1,36 @@
+{
+  "name": "flexedu",
+  "version": "1.0.0",
+  "description": "FlexEdu - Online Learning Platform with C10K Capacity",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "api-gateway",
+    "services/*",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "services:create": "node scripts/create-service.js"
+  },
+  "keywords": ["education", "microservices", "c10k", "nodejs", "react"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

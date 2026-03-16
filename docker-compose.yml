@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb-auth:
+    image: mongo:6.0
+    container_name: flexedu-mongodb-auth
+    ports:
+      - "27017:27017"
+    volumes:
+      - auth-data:/data/db
+    networks:
+      - flexedu-network
+
+  mongodb-course:
+    image: mongo:6.0
+    container_name: flexedu-mongodb-course
+    ports:
+      - "27018:27017"
+    volumes:
+      - course-data:/data/db
+    networks:
+      - flexedu-network
+
+  mongodb-order:
+    image: mongo:6.0
+    container_name: flexedu-mongodb-order
+    ports:
+      - "27019:27017"
+    volumes:
+      - order-data:/data/db
+    networks:
+      - flexedu-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: flexedu-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - flexedu-network
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: flexedu-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - flexedu-network
+
+volumes:
+  auth-data:
+  course-data:
+  order-data:
+
+networks:
+  flexedu-network:
+    driver: bridge
